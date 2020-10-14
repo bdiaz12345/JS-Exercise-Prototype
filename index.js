@@ -39,9 +39,30 @@ Airplane.prototype.land = function () {
         + It should return a string with `name` and `age`. Example: "Mary, 50"
 */
 
-function Person() {
+function Person(name, age) {
+  this.name = name.name;
+  this.age = name.age;
+  this.stomach = 0;
+  this.eat = function(number){
+    return this.stomach + number;
+  }
+  this.poop = function(){
+    this.stomach = 0;
+    return this.stomach;
+  }
+  this.toString = function nameToString () {
+    return `${name.name}, ${name.age}`
+  }
+
 
 }
+
+const mary = new Person({
+  name: "Mary",
+  age: 50
+})
+
+console.log(mary)
 
 /*
   TASK 2
@@ -57,9 +78,20 @@ function Person() {
         + The `drive` method should return a string "I ran out of fuel at x miles!" x being `odometer`.
 */
 
-function Car() {
-
+function Car(model, milesPerGallon) {
+  this.tank = 0;
+  this.odometer = 0;
+  this.fill = function fill(gallons){
+    return this.tank + gallons;
+  }
 }
+
+const dreamCar = new Car({
+  model: "Acura",
+  milesPerGallon: 25
+})
+
+console.log(dreamCar);
 
 /*
   TASK 3
@@ -68,18 +100,23 @@ function Car() {
     - Besides the methods on Person.prototype, babies have the ability to `.play()`:
         + Should return a string "Playing with x", x being the favorite toy.
 */
-function Baby() {
-
+function Baby(name, age, favoriteToy) {
+  Person.call(this, name, age, favoriteToy);
+  this.play = function play(favoriteToy){
+    return `playing with ${favoriteToy}`;
+  }
 }
+
+
 
 /* 
   TASK 4
 
   In your own words explain the four principles for the "this" keyword below:
-  1. 
-  2. 
-  3. 
-  4. 
+  1. global "this" involves working with the window object.
+  2. whenever a function is called with a preceding dot, the "this" references the object before.
+  3. when a constructor function is used, "this" is the instance of the objects that's created and returned.
+  4. when something like "call" or "apply" is used, "this" is explicit.
 */
 
 
